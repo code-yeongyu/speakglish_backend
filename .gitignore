@@ -31,3 +31,8 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# Caches #
+__pycache__
+
+.vscode
