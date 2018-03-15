@@ -34,5 +34,5 @@ Thumbs.db
 
 # Caches #
 __pycache__
-
+*.pyc
 .vscode
