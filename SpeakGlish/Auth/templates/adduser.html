@@ -1,0 +1,13 @@
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <form method="post" action="">
+            {%csrf_token%}
+            {{ form.as_p }}
+            <input type="submit" value="회원가입" class="btn" />
+        </form>
+    </body>
+</html>

@@ -1,11 +1,12 @@
-from Server.models import Article
-from Server.serializers import ArticleSerializer
+from api.models import Article
+from api.serializers import ArticleSerializer
 from django.http import Http404, JsonResponse, HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics, permissions
 from rest_framework.decorators import api_view
 import json
+from django.shortcuts import render
 
 class ArticleList(APIView) :
     def get(self, request, format=None):
@@ -22,7 +23,6 @@ class ArticleList(APIView) :
             jsonString['id'] = int(serializer.data['id'])
             return HttpResponse(json.dumps(jsonString), content_type="application/json", status=status.HTTP_201_CREATED) 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class ArticleDetail(APIView) :
     def get_object(self, pk) :
         try :
@@ -56,3 +56,4 @@ class ArticleDetail(APIView) :
             return Response(status=status.HTTP_204_NO_CONTENT)
         else :
             return Response("This is not your article.", status=status.HTTP_400_BAD_REQUEST)
+#api

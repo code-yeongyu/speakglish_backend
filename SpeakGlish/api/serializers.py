@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from Server.models import Article
+from api.models import Article
 
 class ArticleSerializer(serializers.ModelSerializer) :
     writer = serializers.ReadOnlyField(source='writer.username')
