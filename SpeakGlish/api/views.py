@@ -1,6 +1,6 @@
 from api.models import Article
 from api.serializers import ArticleSerializer
-from django.http import Http404, JsonResponse, HttpResponse
+from django.http import Http404, HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics, permissions

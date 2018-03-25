@@ -1,0 +1,7 @@
+{% autoescape off %}
+안녕하세요 {{user.username}}님!
+SpeakGlish에 가입해 주셔서 감사합니다.
+계정을 활성화 하시기 위해서는 계정의 이메일 인증이 필요합니다. 아래의 링크를 눌러 인증을 완료해주세요.
+
+https://{{domain}}{%url 'activate' uidb64=uid token=token %}
+{% endautoescape %}
