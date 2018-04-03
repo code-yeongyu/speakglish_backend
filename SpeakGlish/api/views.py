@@ -8,6 +8,13 @@ from rest_framework.decorators import api_view
 import json
 from django.shortcuts import render
 
+@api_view(['GET'])
+def user_profile(request) :
+    if request.user.is_authenticated :
+        profile={"username":request.user.username, "email":request.user.email}
+        return Response(profile, status=status.HTTP_200_OK)
+    return Response('', status=status.HTTP_401_UNAUTHORIZED)
+
 class ArticleList(APIView) :
     def get(self, request, format=None):
         if request.user.is_authenticated :
@@ -16,13 +23,15 @@ class ArticleList(APIView) :
         return Response('', status=status.HTTP_401_UNAUTHORIZED)
     
     def post(self, request, format=None) :
-        serializer = ArticleSerializer(data=request.data)
-        if serializer.is_valid() :
-            serializer.save(writer=request.user)
-            jsonString = {}
-            jsonString['id'] = int(serializer.data['id'])
-            return HttpResponse(json.dumps(jsonString), content_type="application/json", status=status.HTTP_201_CREATED) 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if request.user.is_authenticated :
+            serializer = ArticleSerializer(data=request.data)
+            if serializer.is_valid() :
+                serializer.save(writer=request.user)
+                jsonString = {}
+                jsonString['id'] = int(serializer.data['id'])
+                return HttpResponse(json.dumps(jsonString), content_type="application/json", status=status.HTTP_201_CREATED) 
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response("",status=status.HTTP_400_BAD_REQUEST)
 class ArticleDetail(APIView) :
     def get_object(self, pk) :
         try :

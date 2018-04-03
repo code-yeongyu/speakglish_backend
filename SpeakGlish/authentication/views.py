@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from auth.forms import SignupForm
+from authentication.forms import SignupForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
