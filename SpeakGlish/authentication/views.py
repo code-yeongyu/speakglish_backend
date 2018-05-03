@@ -3,7 +3,9 @@ from authentication.forms import SignupForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
+from django.views.decorators.csrf import ensure_csrf_cookie
 
+@ensure_csrf_cookie
 def signup(request) :
     if request.method == 'POST' :
         form = SignupForm(request.POST)
@@ -14,6 +16,7 @@ def signup(request) :
         else :
             return JsonResponse({'account_created':False})
 
+@ensure_csrf_cookie
 def change_password(request) :
     if request.method=="POST" :
         form = PasswordChangeForm(request.user, request.POST)
@@ -24,6 +27,7 @@ def change_password(request) :
         else :
             return JsonResponse({'password_updated':False})
 
+@ensure_csrf_cookie
 def change_username(request) :
     if request.method=="POST" :
         try :
