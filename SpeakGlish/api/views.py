@@ -5,8 +5,23 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics, permissions
 from rest_framework.decorators import api_view
+from django.http import JsonResponse
+from api.forms import SignupForm
 import json
-from django.shortcuts import render
+from django.contrib.auth.models import User
+
+@api_view(['POST'])
+def signup(request) :
+    if request.method == 'POST' :
+        form = SignupForm(request.POST)
+        if form.is_valid() :
+            user = form.save(commit=False)
+            if User.objects.filter(email=user.email).exists():
+                return JsonResponse({'account_created':False})
+            user.save()#add user
+            return JsonResponse({'account_created':True})
+        else :
+            return JsonResponse({'account_created':False})
 
 @api_view(['GET'])
 def user_profile(request) :

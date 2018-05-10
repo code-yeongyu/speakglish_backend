@@ -20,13 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&o$1^v1%18#1^ci@a5z92gj_c95lff)^9(d^qfxj0!6*jvl!ms'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+SECRET_KEY = '&o$1^v1%18#1^ci@a5z92gj_c95lff)^9(d^qfxj0!6*jvl!ms'
 
 # Application definition
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'api',
-    'authentication'
+    'account'
 ]
 
 REST_FRAMEWORK = {
@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'SpeakGlish.wsgi.application'
+#WSGI_APPLICATION = 'SpeakGlish.wsgi.application'
 
 
 # Database
@@ -135,13 +135,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'speakglish@gmail.com'
-EMAIL_HOST_PASSWORD = 'gkgkgk^^google'
-EMAIL_PORT = 587
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-AUTHENTICATION_BACKENDS = ['SpeakGlish.Auth.EmailBackend']
 STATIC_URL = '/static/'
