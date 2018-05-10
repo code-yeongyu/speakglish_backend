@@ -1,20 +1,8 @@
 from django.http import JsonResponse
-from authentication.forms import SignupForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.views.decorators.csrf import ensure_csrf_cookie
-
-@ensure_csrf_cookie
-def signup(request) :
-    if request.method == 'POST' :
-        form = SignupForm(request.POST)
-        if form.is_valid() :
-            user = form.save(commit=False)
-            user.save()#add user
-            return JsonResponse({'account_created':True})
-        else :
-            return JsonResponse({'account_created':False})
 
 @ensure_csrf_cookie
 def change_password(request) :
