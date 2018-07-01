@@ -14,6 +14,7 @@ from django.contrib.auth.models import User
 def signup(request) :
     if request.method == 'POST' :
         form = SignupForm(request.POST)
+        print(request.POST)
         if form.is_valid() :
             user = form.save(commit=False)
             if User.objects.filter(email=user.email).exists():
